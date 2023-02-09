@@ -10,11 +10,10 @@
 
  <form method='post' action=''>
     {% csrf_token %}
-    {% for q in questions %}
+    {% for q in questions%}
     <div class="form-group">
       <label for="question">{{q.question}}</label>
-    </div>
-    <div class="form-check">
+          <div class="form-check">
         <div class="form-check">
             <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios1" value="option1" checked>
             <label class="form-check-label" for="gridRadios1">
@@ -40,19 +39,26 @@
             </label>
         </div>
         <br>
-    </div>    
-    {% endfor %}
-    <input id='timer' type='hidden' name="timer" value="">
-    <div style="display: flex; justify-content: center; align-items: center; ">
-    <br>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+           </div>    
+    
+         <input id='timer' type='hidden' name="timer" value="">
+          <div style="display: flex; justify-content: center; align-items: center; ">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
 
-     <div>    
-       <button  type  = "button" id="next" class="btn btn-primary">Next  </button>
-       <button  type  = "button" id="previous"  class="btn btn-primary">Previous</button>
-     </div>
+  </div>        
+  {% endfor %}
+</form>
 
+  <div>    
+    <div class="next_btn" >
+        <button  type  ="button" id="next" style="background:#007bff;color:#fff;" >Next  </button>
+    </div>
+    <div class="pre_btn">
+        <br>
+        <button  type  ="button" id="previous" style="background:#007bff;color:#fff;" >Previous</button>
+    </div>
+  </div>
     {% block script %}
         <script>
 
@@ -70,32 +76,52 @@
 
           
             
-  var counter = 1;
-  var questions = {{ questions|length }};
-  var formGroups = document.getElementsByClassName("form-group");
-  formGroups[0].style.display = "block";
+  var counter = 0;
+ 
+  var questions = {{ questions | length }};
 
-  document.getElementById("next").addEventListener("click", () =>
-  {
-    formGroups[counter-1].style.display = "none";
-    counter += 1;
-    formGroups[counter-1].style.display = "block";
-    document.getElementById("previous").style.display = "inline";
-    if (counter == questions) {
-        document.getElementById("next").style.display = "none";
+  console.log(questions);
+
+  var option = document.getElementById("gridRadios1");
+
+  var formGroups = document.getElementsByClassName("form-group");
+  
+  formGroups[counter].style.display = "block";
+  formGroups[1].style.display = "none";
+  formGroups[2].style.display = "none";
+  formGroups[3].style.display = "none";
+  formGroups[4].style.display = "none";
+ 
+ 
+
+  document.getElementById("next").addEventListener("click", () => {
+    if (counter < questions - 1) {
+      formGroups[counter].style.display = "none";
+      counter += 1;
+      formGroups[counter].style.display = "block";
+
+      document.getElementsByClassName("pre_btn").style.display = "inline";
+
+      if (counter == questions - 1) {
+        document.getElementsByClassName("next_btn").style.display = "none";
+      }
     }
   });
+
 
   document.getElementById("previous").addEventListener("click", function() {
-    formGroups[counter-1].style.display = "none";
-    counter -= 1;
-    formGroups[counter-1].style.display = "block";
-    document.getElementById("next").style.display = "inline";
-    if (counter == 1) {
-        document.getElementById("previous").style.display = "none";
+    if (counter > 0) {
+      formGroups[counter].style.display = "none";
+      counter -= 1;
+      formGroups[counter].style.display = "block";
+
+      document.getElementsByClassName("next_btn").style.display = "inline";
+
+      if (counter == 0) {
+        document.getElementsByClassName("pre_btn").style.display = "none";
+      }
     }
   });
-
 
 
         </script>

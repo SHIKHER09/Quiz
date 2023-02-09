@@ -43,7 +43,6 @@ def home(request):
         }
     return render(request,'Quiz/home.html',context)
 
-
 def addQuestion(request):    
     if request.user.is_staff:
         form=addQuestionform()
