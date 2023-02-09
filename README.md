@@ -23,11 +23,11 @@ environment running
 
 Say what the step will be
 
-    Give the example
+    pip install django
 
-And repeat
+And than exe. the project by runing this cmmond
 
-    until finished
+     python manage.py runserver 
 
 End with an example of getting some data out of the system or using it
 for a little demo
