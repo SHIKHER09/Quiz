@@ -10,7 +10,7 @@
 
  <form method='post' action=''>
     {% csrf_token %}
-    {% for q  in questions%}
+    {% for q in questions %}
     <div class="form-group">
       <label for="question">{{q.question}}</label>
     </div>
@@ -43,9 +43,16 @@
     </div>    
     {% endfor %}
     <input id='timer' type='hidden' name="timer" value="">
+    <div style="display: flex; justify-content: center; align-items: center; ">
     <br>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+
+     <div>    
+       <button  type  = "button" id="next" class="btn btn-primary">Next  </button>
+       <button  type  = "button" id="previous"  class="btn btn-primary">Previous</button>
+     </div>
+
     {% block script %}
         <script>
 
@@ -60,6 +67,37 @@
                 timer.innerHTML ="<b>Timer: " +t+" seconds</b>"
                 inputtag.value = t
             },1000)
+
+          
+            
+  var counter = 1;
+  var questions = {{ questions|length }};
+  var formGroups = document.getElementsByClassName("form-group");
+  formGroups[0].style.display = "block";
+
+  document.getElementById("next").addEventListener("click", () =>
+  {
+    formGroups[counter-1].style.display = "none";
+    counter += 1;
+    formGroups[counter-1].style.display = "block";
+    document.getElementById("previous").style.display = "inline";
+    if (counter == questions) {
+        document.getElementById("next").style.display = "none";
+    }
+  });
+
+  document.getElementById("previous").addEventListener("click", function() {
+    formGroups[counter-1].style.display = "none";
+    counter -= 1;
+    formGroups[counter-1].style.display = "block";
+    document.getElementById("next").style.display = "inline";
+    if (counter == 1) {
+        document.getElementById("previous").style.display = "none";
+    }
+  });
+
+
+
         </script>
     {% endblock script %}
 

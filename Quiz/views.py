@@ -19,6 +19,8 @@ def home(request):
             print(q.ans)
             print()
             if q.ans ==  request.POST.get(q.question):
+            # if q.ans ==  request.POST.get(q.question):
+
                 score+=10
                 correct+=1
             else:
@@ -33,12 +35,14 @@ def home(request):
             'total':total
         }
         return render(request,'Quiz/result.html',context)
-    else:
-        questions=QuesModel.objects.all()
-        context = {
+    else:         # questions=QuesModel.objects.all()
+         questions=QuesModel.objects.all().order_by('?')[:5]
+         context = {
+            # 'questions' : questions
             'questions':questions
         }
-        return render(request,'Quiz/home.html',context)
+    return render(request,'Quiz/home.html',context)
+
 
 def addQuestion(request):    
     if request.user.is_staff:
