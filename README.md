@@ -25,7 +25,7 @@ Say what the step will be
 
     pip install django
 
-And than exe. the project by runing this cmmond
+And than exe. the project by runing this cmmand
 
      python manage.py runserver 
 
