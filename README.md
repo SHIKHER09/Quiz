@@ -1,4 +1,4 @@
-# Project Title
+# Quiz Web App
 
 One Paragraph of the project description
 
@@ -14,8 +14,8 @@ for notes on deploying the project on a live system.
 ### Prerequisites
 
 Requirements for the software and other tools to build, test and push 
-- [Example 1](https://www.example.com)
-- [Example 2](https://www.example.com)
+- [Example 1](https://www.djangoproject.com/)
+- [Example 2](https://www.mysql.com/)
 
 ### Installing
 
@@ -73,11 +73,11 @@ repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
 
 ## Authors
 
-  - **Billie Thompson** - *Provided README Template* -
-    [PurpleBooth](https://github.com/PurpleBooth)
+  
+    [SHIKHER](https://github.com/SHIKHER09/)
 
 See also the list of
-[contributors](https://github.com/PurpleBooth/a-good-readme-template/contributors)
+[contributors](https://github.com/SHIKHER09/)
 who participated in this project.
 
 ## License
